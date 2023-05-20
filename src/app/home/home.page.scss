@@ -1,27 +1,39 @@
-#container {
+.select-password {
+  display: flex;    
+  align-items: center;  
+  justify-content: center;  
+  flex-direction: column;
+  height: 100%;  
+  margin: 0 auto;
+  padding: 10px;
+}
+
+.select-password h1{
   text-align: center;
-
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%);
 }
 
-#container strong {
-  font-size: 20px;
-  line-height: 26px;
+.select-password ion-button{    
+  background-color: black;
+  color: white;
+  font-weight: bold;
+  border-radius: 10px;    
 }
 
-#container p {
-  font-size: 16px;
-  line-height: 22px;
-
-  color: #8c8c8c;
-
-  margin: 0;
+.select-password ion-button{
+  margin-top: 50px;
 }
 
-#container a {
-  text-decoration: none;
+.select-password h1{
+  margin-bottom: 50px;     
+}
+
+.select-password ion-list{
+  border-width: 1px;
+  border-color: black;
+  border-style: solid;
+  border-radius: 5px;
+}
+
+.select-password ion-list, .select-password ion-button{
+  width: 50%;     
 }

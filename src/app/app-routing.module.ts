@@ -11,6 +11,10 @@ const routes: Routes = [
     redirectTo: 'home',
     pathMatch: 'full'
   },
+  {
+    path: 'chamando-senha',
+    loadChildren: () => import('./chamando-senha/chamando-senha.module').then( m => m.ChamandoSenhaPageModule)
+  },
 ];
 
 @NgModule({

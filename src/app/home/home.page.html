@@ -1,4 +1,4 @@
-<ion-header [translucent]="true">
+<ion-header [translucent]="true">  
   <ion-toolbar>
     <ion-title>
       Blank
@@ -12,9 +12,31 @@
       <ion-title size="large">Blank</ion-title>
     </ion-toolbar>
   </ion-header>
-
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-  </div>
+    
+  <ion-card class="select-password">
+    <ion-text color="black">
+      <h1>Escolha o tipo de senha</h1>
+    </ion-text>
+    <ion-list>
+      <ion-radio-group value="SN">
+        <ion-item>
+          <ion-label>Normal</ion-label>
+          <ion-radio slot="end" value="SN"></ion-radio>
+        </ion-item>
+    
+        <ion-item>
+          <ion-label>Preferencial</ion-label>
+          <ion-radio slot="end" value="SP"></ion-radio>
+        </ion-item>
+    
+        <ion-item>
+          <ion-label>Retirada de exame</ion-label>
+          <ion-radio slot="end" value="SE"></ion-radio>
+        </ion-item>
+      </ion-radio-group>
+    </ion-list>
+    <ion-button expand="block" shape="round" fill="clear" onclick="">
+      Gerar Senha
+    </ion-button>    
+  </ion-card>
 </ion-content>
