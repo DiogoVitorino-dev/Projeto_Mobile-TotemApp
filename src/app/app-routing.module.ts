@@ -15,6 +15,10 @@ const routes: Routes = [
     path: 'chamando-senha',
     loadChildren: () => import('./chamando-senha/chamando-senha.module').then( m => m.ChamandoSenhaPageModule)
   },
+  {
+    path: 'atendimento',
+    loadChildren: () => import('./atendimento/atendimento.module').then( m => m.AtendimentoPageModule)
+  },
 ];
 
 @NgModule({
