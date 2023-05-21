@@ -7,14 +7,16 @@
 <ion-content [fullscreen]="true"> 
   <ion-card>    
     <ion-card-content class="chamandoSenha">
-      <div class="tipoSenha">
+      <div class="tipoSenha" [style.background-color]="this.typeCurrent == 'Senha Normal' ? '#30BB3E' : this.typeCurrent == 'Senha Preferencial' ? '#CAA628' : this.typeCurrent == 'Retirada de exame' ? '#6B7FC1' : 'transparent'" >
         <ion-text color="light">
-          <p>Senha Preferencial</p>
+          <p>{{this.typeCurrent}}</p>
         </ion-text>
       </div>
       <div class="senhaAtual">
         <ion-text class="senha">
-          <p>230327-SP06</p>
+          <p [style.color]="this.typeCurrent == 'Senha Normal' ? '#30BB3E' : this.typeCurrent == 'Senha Preferencial' ? '#CAA628' : this.typeCurrent == 'Retirada de exame' ? '#6B7FC1' : 'transparent'">
+            {{this.sa.currentTicket}}
+          </p>
         </ion-text>
         <ion-text color="dark">
           <p>Guichê 02</p>
@@ -33,24 +35,36 @@
 
         
         <ion-list>
-          <ion-item>            
-            <ion-label>230327-SP06</ion-label>
-            <ion-text class="sp-container" color="light">
-              <p>Senha Preferencial</p>
+          <ion-item [style.display]="!this.historic[0].ticket ? 'none' : 'block'">            
+            <ion-label>{{this.historic[0].ticket}}</ion-label>
+            <ion-text class="sp-container" color="light" [style.background-color]="this.historic[0].type == 'Senha Normal' ? '#30BB3E' : this.historic[0].type == 'Senha Preferencial' ? '#CAA628' : '#6B7FC1'">
+              <p>{{this.historic[0].type}}</p>
             </ion-text>
           </ion-item>
-          <ion-item>            
-            <ion-label>230327-SP06</ion-label>
-            <ion-text class="sn-container" color="light">
-              <p>Senha Normal</p>
+          <ion-item [style.display]="!this.historic[1].ticket  ? 'none' : 'block'">            
+            <ion-label>{{this.historic[1].ticket}}</ion-label>
+            <ion-text class="sn-container" color="light" [style.background-color]="this.historic[1].type == 'Senha Normal' ? '#30BB3E' : this.historic[1].type == 'Senha Preferencial' ? '#CAA628' : '#6B7FC1'">
+              <p>{{this.historic[1].type}}</p>
             </ion-text>
           </ion-item> 
-          <ion-item>            
-            <ion-label>230327-SP06</ion-label>
-            <ion-text class="se-container" color="light">
-              <p>Retirada de Exame</p>
+          <ion-item [style.display]="!this.historic[2].ticket  ? 'none' : 'block'">            
+            <ion-label>{{this.historic[2].ticket}}</ion-label>
+            <ion-text class="se-container" color="light" [style.background-color]="this.historic[2].type == 'Senha Normal' ? '#30BB3E' : this.historic[2].type == 'Senha Preferencial' ? '#CAA628' : '#6B7FC1'">
+              <p>{{this.historic[2].type}}</p>
             </ion-text>
-          </ion-item>         
+          </ion-item>
+          <ion-item [style.display]="!this.historic[3].ticket  ? 'none' : 'block'">            
+            <ion-label>{{this.historic[3].ticket}}</ion-label>
+            <ion-text class="se-container" color="light" [style.background-color]="this.historic[3].type == 'Senha Normal' ? '#30BB3E' : this.historic[3].type == 'Senha Preferencial' ? '#CAA628' : '#6B7FC1'">
+              <p>{{this.historic[3].type}}</p>
+            </ion-text>
+          </ion-item>
+          <ion-item [style.display]="!this.historic[4].ticket  ? 'none' : 'block'">            
+            <ion-label>{{this.historic[4].ticket}}</ion-label>
+            <ion-text class="se-container" color="light" [style.background-color]="this.historic[4].type == 'Senha Normal' ? '#30BB3E' : this.historic[4].type == 'Senha Preferencial' ? '#CAA628' : '#6B7FC1'">
+              <p>{{this.historic[4].type}}</p>
+            </ion-text>
+          </ion-item>                
         </ion-list>
       </div>
     </ion-card-content>
@@ -62,7 +76,7 @@
           </ion-text>      
         
           <ion-text class="suaSenha-text" color="light">
-            <p>230327-SP06</p>
+            <p>{{this.sa.yourTicket}}</p>
           </ion-text>               
       </div>
       
@@ -70,8 +84,8 @@
           <ion-text class="suaSenha-header" color="light">
             <h2>Tipo de senha</h2>
           </ion-text>        
-          <ion-text class="suaSenha-text" color="light">
-            <p>Senha Preferencial</p>
+          <ion-text class="suaSenha-text">
+            <p [style.color]="this.yourTypeTicketText == 'Senha Normal' ? '#30BB3E' : this.yourTypeTicketText == 'Senha Preferencial' ? '#CAA628' : '#6B7FC1'">{{this.yourTypeTicketText}}</p>
           </ion-text>                
       </div>
     </ion-card-content>
@@ -84,8 +98,11 @@
     </ion-card-content>
 
     <ion-card-content class="gerarSenha">
-      <ion-button expand="block" fill="clear">
+      <ion-button expand="block" fill="clear" (click)="gotoSenha()">
         Gerar senha
+      </ion-button>
+      <ion-button (click)="gotoAtendimento()" expand="block" fill="clear" shape="round">
+        Atendimento
       </ion-button>
     </ion-card-content>
   </ion-card>

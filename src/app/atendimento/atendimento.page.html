@@ -20,13 +20,16 @@
         </div>
   
         <div class="senhaAtual">
-          <div class="tipoSenha">
+          <div class="tipoSenha"                    
+          [style.background-color]="this.ticketType == 'Senha Normal' ? '#30BB3E' : this.ticketType == 'Senha Preferencial' ? '#CAA628' : this.ticketType == 'Retirada de exame' ? '#6B7FC1' : 'transparent'">
             <ion-text color="light">
-              <p>Senha Preferencial</p>
+              <p>{{this.ticketType}}</p>
             </ion-text>
           </div>
           <ion-text class="senha-atendimento">
-            <h2>230327-SP06</h2>
+            <h2 [style.color]="this.ticketType == 'Senha Normal' ? '#30BB3E' : this.ticketType == 'Senha Preferencial' ? '#CAA628' : this.ticketType == 'Retirada de exame' ? '#6B7FC1' : 'transparent'">
+              {{this.sa.currentTicket}}
+            </h2>
           </ion-text>
         </div>
   
@@ -40,10 +43,10 @@
       </ion-card-content>
     </ion-card>
     <div class="controle">
-      <ion-button expand="block" fill="clear">
+      <ion-button (click)="gotoSenha()" expand="block" fill="clear">
         Finalizar
       </ion-button>
-      <ion-button expand="block" fill="clear">
+      <ion-button (click)="onClickProxSenha()" expand="block" fill="clear">
         Proxima Senha
       </ion-button>
     </div>

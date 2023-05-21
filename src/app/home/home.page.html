@@ -12,10 +12,10 @@
       <h1>Escolha o tipo de senha</h1>
     </ion-text>
     <ion-list>
-      <ion-radio-group value="SN">
+      <ion-radio-group  value="SG" [(ngModel)]="typeTicket">
         <ion-item>
           <ion-label>Normal</ion-label>
-          <ion-radio slot="end" value="SN"></ion-radio>
+          <ion-radio slot="end" value="SG"></ion-radio>
         </ion-item>
     
         <ion-item>
@@ -29,8 +29,8 @@
         </ion-item>
       </ion-radio-group>
     </ion-list>
-    <ion-button expand="block" fill="clear" onclick="">
-      Gerar Senha
-    </ion-button>    
+    <ion-button expand="block" fill="clear" (click)="gotoChamandoSenha()" [disabled]="this.sa.excededTime === true ? true : false">
+      {{this.sa.excededTime === true ? "Senhas Esgotadas" : "gerar Senha"}}
+    </ion-button>     
   </ion-card>
 </ion-content>
