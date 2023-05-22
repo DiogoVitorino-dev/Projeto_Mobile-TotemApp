@@ -1,42 +1,38 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute,  Router } from '@angular/router';
 import SistemaAtendimento from 'src/script/sistemaAtendimento/SistemaAtendimento';
 
 @Component({
-  selector: 'app-home',
-  templateUrl: 'home.page.html',
-  styleUrls: ['home.page.scss'],
+  selector: 'app-relatorio',
+  templateUrl: './relatorio.page.html',
+  styleUrls: ['./relatorio.page.scss'],
 })
-export class HomePage implements OnInit{  
+export class RelatorioPage implements OnInit {
   sa = new SistemaAtendimento()
-  typeTicket = "SG" 
+  relatorioAtual = this.sa.gerarRelatorio()
 
-  constructor(private route: ActivatedRoute, private router: Router){
-    console.log(this.sa.excededTime);
-  }
+  constructor(private route: ActivatedRoute,private router: Router) { }
 
-  ngOnInit() {    
+  ngOnInit() {
     let saParam = this.route.snapshot.paramMap.get('sa') || ""
     if (saParam !== "") { 
       let sa:SistemaAtendimento = JSON.parse(saParam)
       this.sa.currentTicket = sa.currentTicket
       this.sa.endTime = sa.endTime
       this.sa.excededTime = sa.excededTime
+      this.sa.yourTicket = sa.yourTicket
       this.sa.filaAtendimento = sa.filaAtendimento
       this.sa.filaEspera = sa.filaEspera
-      this.sa.yourTicket = sa.yourTicket
       this.sa.time = sa.time
       this.sa.quantitySP = sa.quantitySP
       this.sa.quantitySG = sa.quantitySG
       this.sa.quantitySE = sa.quantitySE
       this.sa.guiche = sa.guiche
-      
-      
+      this.relatorioAtual = this.sa.gerarRelatorio()
     }
   }
-  
-  gotoChamandoSenha(){
-    this.sa.addQueue(this.typeTicket)
-    this.router.navigate(['/chamando-senha',{sa:JSON.stringify(this.sa)}])
-  } 
+
+  gotoAtendimento(){
+    this.router.navigate(['/atendimento',{sa:JSON.stringify(this.sa)}])
+  }
 }

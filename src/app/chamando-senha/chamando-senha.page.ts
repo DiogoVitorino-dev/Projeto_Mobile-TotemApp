@@ -11,6 +11,7 @@ export class ChamandoSenhaPage implements OnInit {
   sa = new SistemaAtendimento()
   yourTypeTicketText =""
   typeCurrent = ""
+  
   historic = [{ticket:'',type:''},{ticket:'',type:''},{ticket:'',type:''},{ticket:'',type:''},{ticket:'',type:''},{ticket:'',type:''}] 
 
   constructor(private route: ActivatedRoute,private router: Router) { }
@@ -29,6 +30,7 @@ export class ChamandoSenhaPage implements OnInit {
       this.sa.quantitySP = sa.quantitySP
       this.sa.quantitySG = sa.quantitySG
       this.sa.quantitySE = sa.quantitySE
+      this.sa.guiche = sa.guiche
       this.yourTypeTicketText = this.getYourTicketType(this.sa.yourTicket) 
       this.typeCurrent = this.getYourTicketType(this.sa.currentTicket) 
       this.getHistoric()          

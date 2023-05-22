@@ -27,6 +27,7 @@ export class AtendimentoPage implements OnInit {
       this.sa.quantitySP = sa.quantitySP
       this.sa.quantitySG = sa.quantitySG
       this.sa.quantitySE = sa.quantitySE
+      this.sa.guiche = sa.guiche
       this.ticketType = this.getTicketType(this.sa.currentTicket)
       console.log(this.ticketType);
         
@@ -48,6 +49,10 @@ export class AtendimentoPage implements OnInit {
 
   gotoSenha(){
     this.router.navigate(['/chamando-senha',{sa:JSON.stringify(this.sa)}])
+  }
+
+  gotoRelatorio(){
+    this.router.navigate(['/relatorio',{sa:JSON.stringify(this.sa)}])
   }
 
   onClickProxSenha(){

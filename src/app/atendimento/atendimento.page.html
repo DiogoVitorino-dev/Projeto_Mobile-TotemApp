@@ -15,7 +15,7 @@
           </ion-text>      
         
           <ion-text class="seuGuiche-text" color="light">
-            <p>Guichê 02</p>
+            <p>Guichê 0{{this.sa.guiche}}</p>
           </ion-text>               
         </div>
   
@@ -45,6 +45,9 @@
     <div class="controle">
       <ion-button (click)="gotoSenha()" expand="block" fill="clear">
         Finalizar
+      </ion-button>
+      <ion-button (click)="gotoRelatorio()" expand="block" fill="clear">
+        Relatorio
       </ion-button>
       <ion-button (click)="onClickProxSenha()" expand="block" fill="clear">
         Proxima Senha

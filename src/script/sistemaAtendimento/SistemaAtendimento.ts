@@ -31,7 +31,8 @@ export default class SistemaAtendimento {
     public lastTypeTicket = ""
     public excededTime = false
     public endTime = "17:00:00"
-    public time = 0 
+    public time = 0
+    public guiche = 0    
 
     constructor(
         filaEspera?:Array<string>,
@@ -44,7 +45,8 @@ export default class SistemaAtendimento {
         lastTypeTicket?:string,
         excededTime?:boolean,
         endTime?:string,
-        time?:number
+        time?:number,
+        guiche?:number,        
     ) {
         this.filaEspera = filaEspera || []
         this.filaAtendimento = filaAtendimento || []
@@ -57,6 +59,7 @@ export default class SistemaAtendimento {
         this.excededTime = excededTime || false
         this.endTime = endTime || "17:00:00"
         this.time = time || 0
+        this.guiche = guiche || 0        
     }
 
     veririficationPriority() {     
@@ -122,7 +125,8 @@ export default class SistemaAtendimento {
             this.currentTicket = this.filaEspera[index]        
             this.filaEspera[index] = ""
             this.filaAtendimento.push(this.currentTicket)
-            this.lastTypeTicket = typeTicket         
+            this.lastTypeTicket = typeTicket 
+            this.getGuiche()        
         }        
     }
     
@@ -141,6 +145,46 @@ export default class SistemaAtendimento {
         
         if (dfinal.toLocaleTimeString() > this.endTime) this.excededTime = false        
         
+    }
+
+    getGuiche(){
+        let g = Math.floor(Math.random()*5)
+        while(g===this.guiche){
+            g = Math.floor(Math.random()*5)
+        }
+        this.guiche=g
+    }
+
+    getQuantityTicketAcceptedPerPriority(){
+        let se = 0; let sg = 0; let sp = 0;
+        this.filaAtendimento.forEach(element => {
+            if (element.search("SG")!== -1)
+                sg += 1
+
+            else if (element.search("SP")!== -1)
+                sp += 1
+
+            else if (element.search("SE")!== -1)
+                se += 1 
+        })
+        console.log("se",se);
+        console.log("sg",sg);
+        console.log("sp",sp)
+        return {se,sg,sp}
+    }
+
+    gerarRelatorio(){
+        const {se,sp,sg} = this.getQuantityTicketAcceptedPerPriority()
+        return {
+            quantityTickets: this.filaEspera.length,
+            quantityAcceptedTicket: this.filaAtendimento.length,
+            quantitySE:this.quantitySE,
+            quantitySEAccepted:se,
+            quantitySG:this.quantitySG,
+            quantitySGAccepted:sg,
+            quantitySP:this.quantitySP,
+            quantitySPAccepted:sp
+        }
     }
 
 }

@@ -6,7 +6,7 @@
 
 <ion-content [fullscreen]="true"> 
   <ion-card>    
-    <ion-card-content class="chamandoSenha">
+    <ion-card-content class="chamandoSenha" [style.display]="this.typeCurrent == '' ? 'none' : 'block'">
       <div class="tipoSenha" [style.background-color]="this.typeCurrent == 'Senha Normal' ? '#30BB3E' : this.typeCurrent == 'Senha Preferencial' ? '#CAA628' : this.typeCurrent == 'Retirada de exame' ? '#6B7FC1' : 'transparent'" >
         <ion-text color="light">
           <p>{{this.typeCurrent}}</p>
@@ -19,14 +19,14 @@
           </p>
         </ion-text>
         <ion-text color="dark">
-          <p>Guichê 02</p>
+          <p>Guichê 0{{this.sa.guiche}}</p>
         </ion-text>
       </div>
     </ion-card-content>
 
     <ion-card-content class="historico-senhas">
       
-      <div class="historico-senhas-container">
+      <div class="historico-senhas-container" [style.display]="this.typeCurrent == '' ? 'none' : 'block'">
         <div class="historico-senhas-header">
           <ion-text color="dark">
             <h2>Senhas Chamadas</h2>
